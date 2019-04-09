@@ -1,4 +1,4 @@
-package es.codeurjc.ais.tictactoe;
+package es.upm.eacs.pruebas.tictactoe;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import es.codeurjc.ais.tictactoe.TicTacToeGame.Cell;
+import es.upm.eacs.pruebas.tictactoe.TicTacToeGame.Cell;
 
 public class BoardTest {
 	

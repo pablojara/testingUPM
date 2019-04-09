@@ -1,4 +1,4 @@
-package es.codeurjc.ais.tictactoe;
+package es.upm.eacs.pruebas.tictactoe;
 
 import org.junit.After;
 import org.junit.AfterClass;

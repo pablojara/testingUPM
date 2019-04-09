@@ -1,4 +1,4 @@
-package es.codeurjc.ais.tictactoe;
+package es.upm.eacs.pruebas.tictactoe;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentMatcher;
 
-import es.codeurjc.ais.tictactoe.TicTacToeGame.EventType;
+import es.upm.eacs.pruebas.tictactoe.TicTacToeGame.EventType;
 
 import static org.mockito.Mockito.argThat;
 

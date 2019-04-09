@@ -1,4 +1,4 @@
-package es.codeurjc.ais.tictactoe;
+package es.upm.eacs.pruebas.tictactoe;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import es.codeurjc.ais.tictactoe.TicTacToeGame.Event;
-import es.codeurjc.ais.tictactoe.TicTacToeGame.EventType;
+import es.upm.eacs.pruebas.tictactoe.TicTacToeGame.Event;
+import es.upm.eacs.pruebas.tictactoe.TicTacToeGame.EventType;
 
 public class TicTacToeHandler extends TextWebSocketHandler {
 
