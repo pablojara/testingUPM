@@ -2,6 +2,7 @@ package es.upm.eacs.pruebas.tictactoe;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,6 +14,8 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
+import es.upm.eacs.pruebas.tictactoe.TicTacToeGame.Cell;
+
 @RunWith(Parameterized.class)
 public class BoardParameterizedTest {
 
@@ -20,10 +23,10 @@ public class BoardParameterizedTest {
 	@Parameters
 	public static Collection<Object[]> data(){
 		Object[][] values = {
-				{0,1,2,4,5,6, "X", "O", "WINX"},
-				{0,3,6,1,2,4, "X", "O", "WINX"},
-				{0,2,3,4,1,6, "X", "O", "DRAW"}
-				//Add more 
+				{0,1,2,4,5,6, "X", "O"},
+				{0,3,6,1,2,4, "X", "O"},
+				{0,2,3,6,7,8, "X", "O"},
+				{0,2,3,4,1,6, "X", "O"}
 		};
 		return Arrays.asList(values);
 	}
@@ -36,8 +39,6 @@ public class BoardParameterizedTest {
 	@Parameter(5) public int cell5;
 	@Parameter(6) public String playerValueX;
 	@Parameter(7) public String playerValueO;
-	@Parameter(8) public String result;
-
 
 	@Before
 	public void setUp() {
@@ -45,8 +46,7 @@ public class BoardParameterizedTest {
 	}
 
 	@Test
-	public void GIVEN__WHEN__THEN()
-	{
+	public void GIVEN__WHEN__THEN(){
 		board.enableAll();
 
 		board.getCell(cell0).value = playerValueX;
@@ -56,12 +56,26 @@ public class BoardParameterizedTest {
 		board.getCell(cell2).value = playerValueX;
 		board.getCell(cell5).value = playerValueO;
 
-		int[] winPos = board.getCellsIfWinner(playerValueX);
-		if (result == "WINX") {
-			assertNotNull("Win X", winPos);
+		int[] posX = board.getCellsIfWinner(playerValueX);
+		int[] posO = board.getCellsIfWinner(playerValueO);
+
+		if (posX !=null) {
+			assertNotNull("Win X", posX);
 		}
-		else {
-			assertNull("Draw!",winPos);
+		else if (posO !=null ) {
+			assertNotNull("Win Y", posO);
+		}
+		else {			
+			for(int i = 0; i < 9; i++){
+				if(i%2 == 0){
+					board.getCell(i).value = playerValueX;
+				}
+				else{
+					board.getCell(i).value = playerValueO;
+				}
+			}
+			boolean isDraw = board.checkDraw();
+			assertTrue(isDraw);
 		}
 	}
 }
