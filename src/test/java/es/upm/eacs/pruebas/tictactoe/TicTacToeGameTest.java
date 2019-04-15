@@ -2,34 +2,22 @@ package es.upm.eacs.pruebas.tictactoe;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertTrue;
-import junit.framework.TestCase;
+
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.ArgumentMatcher;
-import org.mockito.Matchers;
+
 
 import es.upm.eacs.pruebas.tictactoe.TicTacToeGame.EventType;
 import es.upm.eacs.pruebas.tictactoe.TicTacToeGame.WinnerValue;
 
-import static org.mockito.Mockito.argThat;
-
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static org.assertj.core.api.Assertions.*;
-
 import static org.mockito.Mockito.*;
-import static org.assertj.core.api.Assertions.*;
 
-import static org.hamcrest.BaseMatcher.*;
-import static org.hamcrest.CoreMatchers.hasItems;
-import org.hamcrest.core.*;
 
 public class TicTacToeGameTest {
 
@@ -38,10 +26,12 @@ public class TicTacToeGameTest {
 	
 	private List<Player> list;
 	
+	private TicTacToeGame game;
 	private Player player0;
 	private Player player1;
 	
-	
+	private Connection connection1 = mock(Connection.class);
+	private Connection connection2 = mock(Connection.class);
 	
 	
 	@Before
@@ -52,6 +42,7 @@ public class TicTacToeGameTest {
     	
     	list =  new CopyOnWriteArrayList<>();
     	
+    	game = new TicTacToeGame();
     	player0 = new Player(0, "X", "Pikachu");
     	player1 = new Player(1, "O", "Charmander");
     }
@@ -59,6 +50,8 @@ public class TicTacToeGameTest {
 	@After
     public void tearDown() throws Exception {
 		System.gc();
+		reset(connection1);
+		reset(connection2);
         System.out.println("Tear down.");
     }
 	
@@ -67,11 +60,6 @@ public class TicTacToeGameTest {
 	{
 		list.add(player0);
 		
-		TicTacToeGame game = new TicTacToeGame();
-
-		Connection connection1 = mock(Connection.class);
-		Connection connection2 = mock(Connection.class);
-
 		game.addConnection(connection1);
 		game.addConnection(connection2);
 
@@ -128,11 +116,6 @@ public class TicTacToeGameTest {
 	public void GIVEN_twoPlayers_WHEN_firstOneStarts_THEN_Lose()
 	{
 		list.add(player0);
-		
-		TicTacToeGame game = new TicTacToeGame();
-
-		Connection connection1 = mock(Connection.class);
-		Connection connection2 = mock(Connection.class);
 
 		game.addConnection(connection1);
 		game.addConnection(connection2);
@@ -191,11 +174,6 @@ public class TicTacToeGameTest {
 	public void GIVEN_twoPlayers_WHEN_firstOneStarts_THEN_Draw()
 	{
 		list.add(player0);
-		
-		TicTacToeGame game = new TicTacToeGame();
-
-		Connection connection1 = mock(Connection.class);
-		Connection connection2 = mock(Connection.class);
 
 		game.addConnection(connection1);
 		game.addConnection(connection2);
