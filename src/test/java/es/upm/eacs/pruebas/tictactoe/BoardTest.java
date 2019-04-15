@@ -1,7 +1,8 @@
 package es.upm.eacs.pruebas.tictactoe;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
@@ -20,12 +21,11 @@ public class BoardTest {
 		board.getCell(2).value = "X";
 		board.getCell(7).value = "O";
 		
-		int[] winPos = board.getCellsIfWinner("X");
+		int[] XPosition = board.getCellsIfWinner("X");
+		int[] OPosition = board.getCellsIfWinner("O");
 		
-		int[] winPosEquals = {0,1,2};
-		
-		assertArrayEquals(winPosEquals, winPos);
-		
+		assertNotNull("Win X", XPosition);
+		assertNull("Lose O", OPosition);			
 	}
 	
 	@Test
@@ -41,11 +41,11 @@ public class BoardTest {
 		board.getCell(3).value = "X";
 		board.getCell(8).value = "O";
 		
-		int[] winPos = board.getCellsIfWinner("O");
+		int[] XPosition = board.getCellsIfWinner("X");
+		int[] OPosition = board.getCellsIfWinner("O");
 		
-		int[] winPosEquals = {6,7,8};
-		
-		assertArrayEquals(winPosEquals, winPos);
+		assertNotNull("Win O", OPosition);
+		assertNull("Lose X", XPosition);	
 	}
 
 	@Test
