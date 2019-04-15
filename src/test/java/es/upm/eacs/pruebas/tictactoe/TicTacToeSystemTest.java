@@ -16,6 +16,7 @@ public class TicTacToeSystemTest{
 
 	private WebDriver driverO;
 	private WebDriver driverX;
+	private String url = "http://localhost:8080/";
 
 	@BeforeClass
 	public static void setupClass() {
@@ -43,8 +44,8 @@ public class TicTacToeSystemTest{
 	
 	@Test
 	public void GIVEN_twoPlayers_WHEN_firstOneStarts_THEN_Win() { 
-		driverO.get("http://localhost:8080/");
-		driverX.get("http://localhost:8080/");
+		driverO.get(url);
+		driverX.get(url);
 
 		driverO.findElement(By.id("nickname")).sendKeys("Pablo");
 		driverO.findElement(By.id("startBtn")).click();
@@ -59,15 +60,15 @@ public class TicTacToeSystemTest{
 		
 		driverO.findElement(By.id("cell-2")).click();
 
-		String body = driverX.switchTo().alert().getText();
-		String newBody = "Pablo wins! Maria looses.";
-		Assert.assertEquals(body, newBody);
+		String webMessage = driverX.switchTo().alert().getText();
+		String message = "Pablo wins! Maria looses.";
+		Assert.assertEquals(message, webMessage);
 	}
 	
 	@Test
 	public void GIVEN_twoPlayers_WHEN_firstOneStarts_THEN_Lose() { 
-		driverO.get("http://localhost:8080/");
-		driverX.get("http://localhost:8080/");
+		driverO.get(url);
+		driverX.get(url);
 
 		driverO.findElement(By.id("nickname")).sendKeys("Pablo");
 		driverO.findElement(By.id("startBtn")).click();
@@ -84,15 +85,15 @@ public class TicTacToeSystemTest{
 		driverX.findElement(By.id("cell-5")).click();
 
 
-		String body = driverX.switchTo().alert().getText();
-		String newBody = "Maria wins! Pablo looses.";
-		Assert.assertEquals(body, newBody);
+		String webMessage = driverX.switchTo().alert().getText();
+		String message = "Maria wins! Pablo looses.";
+		Assert.assertEquals(message, webMessage);
 	}
 	
 	@Test
 	public void GIVEN_twoPlayers_WHEN_firstOneStarts_THEN_NobodyWin() { 
-		driverO.get("http://localhost:8080/");
-		driverX.get("http://localhost:8080/");
+		driverO.get(url);
+		driverX.get(url);
 
 		driverO.findElement(By.id("nickname")).sendKeys("Pablo");
 		driverO.findElement(By.id("startBtn")).click();
@@ -113,8 +114,8 @@ public class TicTacToeSystemTest{
 		
 		driverO.findElement(By.id("cell-7")).click();
 
-		String body = driverX.switchTo().alert().getText();
-		String newBody = "Draw!";
-		Assert.assertEquals(body, newBody);
+		String webMessage = driverX.switchTo().alert().getText();
+		String message = "Draw!";
+		Assert.assertEquals(message, webMessage);
 	}
 }
